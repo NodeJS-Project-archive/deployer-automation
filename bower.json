@@ -1,0 +1,19 @@
+{
+  "name": "childprocess",
+  "description": "small example on node child process",
+  "main": "server.js",
+  "authors": [
+    "Spanadana Bola"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower_components"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/NodeJS-Project-archive/deployer-automation",
+  "dependencies": {
+    "angular": "^1.6.5"
+  }
+}
