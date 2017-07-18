@@ -14,12 +14,14 @@ app.controller('myCtrl', function ($scope, socketFactory) {
 
     $scope.runCommands = function () {
         $scope.data = [];
+        var id=1;
         $scope.responseData="";
         socketFactory.emit('childProcess', { name: "spandana" });
 
         socketFactory.on('commands', function (data) {
             $scope.$apply(function () {
-                $scope.responseData=data.message;
+                $scope.responseData=id+": "+data.message;
+                id=id+1;
                 $scope.getResponse();
             });
         });
