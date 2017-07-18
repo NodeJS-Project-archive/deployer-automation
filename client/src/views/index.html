@@ -1,22 +1,38 @@
 <!DOCTYPE html>
-<html ng-app="myApp">
+<html ng-app="deployer">
 
 <head>
     <title>Deployer Automation</title>
     <script src="../../bower_components/angular/angular.min.js"></script>
- <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
-<script src="../../src/js/script.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="../../src/js/deployerCtrl.js"></script>
+    <script src="../../src/js/routing.js"></script>
+    <script src="../../src/js/showProcessCtrl.js"></script>
 
 </head>
 
-<body ng-controller="myCtrl" ng-init="runCommands()">
+<body class="container bg-info">
+    <h1 class="text-info">Deployer</h1>
+    <hr>
+    <div ui-view>
+    </div>
+
+</body>
+
+<!--<body ng-controller="myCtrl" ng-init="runCommands()">
     <div ng-click="getResponse()">
         <h4>Application deploying process</h4>
         <ul ng-repeat="x in data">
             <li>{{x}}</li>
         </ul>
-         <!--<p>{{data}}</p>-->
     </div>
-</body>
+</body>-->
 
 </html>
