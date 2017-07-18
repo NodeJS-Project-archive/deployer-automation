@@ -11,7 +11,7 @@ You can install this package with npm and bower.
 
 
 ### Note
-Make sure that commands need to be run to deploy your project should be added in .bat file (Windows) or .sh or .bash file (Linux) respective of the operating system. Put your script files in `cmd_files` folder.
+Make sure that commands need to be run to deploy your project should be added in .bat file (Windows) or .sh file (Linux) respective of the operating system. Put your script files in `cmd_files` folder.
 
 ## Documentation
 
