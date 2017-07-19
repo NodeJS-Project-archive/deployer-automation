@@ -10,8 +10,13 @@ You can install this package with npm and bower.
 > bower install
 
 
-### Note
-Make sure that commands need to be run to deploy your project should be added in .bat file (Windows) or .sh file (Linux) respective of the operating system. Put your script files in `cmd_files` folder.
+### About
+The commands need to be run to deploy your project should be entered as processes if it needs different processes add new process. After adding commands click `Execute Commands` to deploy the project.
+
+
+#### Note
+Change the script file extension according to the operating system (.bat file for Windows and .sh file for Linux ) in `server.js` file.
+
 
 ## Documentation
 
