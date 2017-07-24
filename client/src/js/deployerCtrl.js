@@ -61,6 +61,12 @@ app.controller('deployerCtrl', function ($scope, socketFactory, $stateParams, $s
         };
         $scope.rowMaker.push({ "value": "" });
         $scope.process = angular.copy(data);
+        $scope.nameFlag = false;
+         for (var i = 0; i < $scope.totalProcesses.length; i++) {
+                    if($scope.totalProcesses[i].id===data.id) {
+                        $scope.totalProcesses[i].processName="";
+                    }
+         }
     };
 
     $scope.delete = function (data) {
@@ -116,9 +122,12 @@ app.controller('deployerCtrl', function ($scope, socketFactory, $stateParams, $s
             $scope.totalProcesses.push($scope.process);
 
         } else {
+             $scope.process.commandsData = [];
             for (var i = 0; i < $scope.rowMaker.length; i++) {
-                if ($scope.rowMaker[i].value && $scope.rowMaker[i].value != "")
+                if ($scope.rowMaker[i].value && $scope.rowMaker[i].value != ""){
                     $scope.process.commandsData.push($scope.rowMaker[i].value);
+                }
+                    
             }
             for (var i = 0; i < $scope.totalProcesses.length; i++) {
                 if ($scope.totalProcesses[i].id === $scope.process.id) {

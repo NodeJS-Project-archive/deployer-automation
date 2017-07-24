@@ -31,7 +31,7 @@ io.on('connection', function (socket) {
             });
 
         }
-          //var files = ["commands.bat", "mongo.bat", "redis.bat", "rediscli.bat", "nodestart.bat"];
+         // var files = ["commands.bat", "mongo.bat", "redis.bat", "rediscli.bat", "nodestart.bat"];
         if (files.length != 0) {
             const { spawn } = require('child_process');
             console.log("files data" + files);
