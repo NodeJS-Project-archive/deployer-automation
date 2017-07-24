@@ -30,7 +30,7 @@ app.controller('deployerCtrl', function ($scope, socketFactory, $stateParams, $s
         if ($scope.totalProcesses.length === 0 && $scope.process.processName !== "") {
             $scope.nameFlag = false;
         } else {
-            var flag=false;
+            var flag=true;
             for (var i = 0; i < $scope.totalProcesses.length; i++) {
                 if ($scope.process.processName === "") {
                         flag = true;
