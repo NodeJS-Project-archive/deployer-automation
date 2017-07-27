@@ -1,10 +1,14 @@
-var app = angular.module('deployer', ['ui.router']);
-app.controller('deployerCtrl', function ($scope, socketFactory, $stateParams, $state) {
-
+var app = angular.module('deployer');
+app.controller('deployerCtrl', function ($scope, socketFactory, $stateParams, $state, $http) {
+    //$scope.activeMenu = 'Deployer';
+    
     $scope.totalProcesses = [];
     $scope.process = { "id": "", "processName": "", "commandsData": [] };
+    $scope.processData = { "title": "", "processList": []};
+    $scope.processData = $stateParams.processData;
+    $scope.totalProcesses=$stateParams.totalProcesses;
     $scope.process.commandsData = [];
-    var id = 1;
+    var id =  $scope.totalProcesses.length+1;
     $scope.addtag = true;
     var addProcess = true;
     $scope.deleteRow = function (index) {
@@ -26,26 +30,34 @@ app.controller('deployerCtrl', function ($scope, socketFactory, $stateParams, $s
 
     }
     $scope.nameFlag = true;
+    
     $scope.checkName = function () {
+        var flag=0;
         if ($scope.totalProcesses.length === 0 && $scope.process.processName !== "") {
             $scope.nameFlag = false;
         } else {
-            var flag=true;
             for (var i = 0; i < $scope.totalProcesses.length; i++) {
                 if ($scope.process.processName === "") {
-                        flag = true;
+                       // flag = true;
+                       falg=flag+1;
+                        $scope.nameFlag = true; 
                         toastr.error("process name required");
+                        break;
                 }
                 else if($scope.totalProcesses[i].processName === $scope.process.processName){
-                    flag=true;
+                    //flag=true;
+                    flag=flag+1;
+                    
                     toastr.error($scope.process.processName+" process name already exist");
                      //$scope.nameFlag = true;
+                }else{
+                   //  $scope.nameFlag = false;
                 }
             }
-            if(flag==false){
-                $scope.nameFlag = false;
+            if(flag>0){
+               $scope.nameFlag = true; 
             }else{
-                $scope.nameFlag = true;  
+                $scope.nameFlag = false;
             }
         }
 
@@ -148,26 +160,63 @@ app.controller('deployerCtrl', function ($scope, socketFactory, $stateParams, $s
     $scope.runCommands = function () {
 
         $state.go("showProcess", {
-            totalData: $scope.totalProcesses
+            totalData: $scope.totalProcesses,
+            request:"childProcess"
         });
-        // $window.location.href = '../../src/views/showDeployProcess.html';
-        // $scope.data = [];
-        // var id=1;
-        // $scope.responseData="";
-        // socketFactory.emit('childProcess', { name: $scope.totalProcesses });
-
-        // socketFactory.on('commands', function (data) {
-        //     $scope.$apply(function () {
-        //         $scope.responseData=id+": "+data.message;
-        //         id=id+1;
-        //         $scope.getResponse();
-        //     });
-        // });
+        
     }
 
-    // $scope.getResponse = function () {
-    //     $scope.data.push($scope.responseData);
-    // }
+    $scope.saveProcessName = function () {
+        //$scope.dismiss;
+        var title = "";
+        if ($scope.processTitle != null) {
+
+            if ($scope.processTitle == "") {
+                title = $scope.processData.title;
+            } else {
+                title = $scope.processTitle;
+            }
+
+            if (title != "") {
+                $scope.processData.title = title;
+                $scope.processData.processList = $scope.totalProcesses;
+                $scope.saveProcessData();
+            }
+
+        }
+    }
+    $scope.saveProcessData = function () {
+        $http({
+            url: '/saveProcessData',
+            method: "POST",
+            data: $scope.processData,
+            headers: { 'Content-Type': 'application/json' }
+        }).then(function (response) {
+            console.log(response.data.stat);
+            if (response.data.stat) {
+                //$scope.load = "none";
+                $scope.totalProcesses=[];
+                toastr.success(response.data.msg);
+                console.log(response.data.msg); // *****************************************************************************
+
+                //  $window.location.href = '../../../src/Registration-Login/views/index.html';
+            } else if (response.data.msg === "please login to create app ") {
+                //$scope.load = "none";
+                $window.location.href = '../../../src/Registration-Login/views/index.html';
+            }
+            else {
+                //$scope.load = "none";
+                toastr.error(response.data.msg);
+                console.log(response.data.msg); // *****************************************************************************
+
+            }
+        }, function (err) {
+            //$scope.load = "none";
+            toastr.error(err);
+            console.log(err); // *****************************************************************************
+
+        });
+    }
 
 
 });

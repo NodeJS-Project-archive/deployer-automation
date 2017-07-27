@@ -1,0 +1,15 @@
+<div ng-controller="overviewCtrl" ng-init="getPortsAvailable()">
+
+    <div class="col-lg-2 pull-right">
+                <input type="button" title="show running services" ng-click="getRunningServices()" value="Running Services" class="btn btn-success btn-block"/>
+    </div>
+    <br/><br/>
+   <h5> Available Ports:</h5>
+    {{ports}}
+    <br/><br/>
+    <h3> Platform: {{platform}}</h3>
+    <h3> Username: {{username}}</h3>
+    <h3> Total RAM Memory: {{totalmem}} MB</h3>
+    <h3> Free RAM Memory: {{freemem}} MB</h3>
+
+</div>

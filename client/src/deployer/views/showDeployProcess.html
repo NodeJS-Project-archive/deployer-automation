@@ -1,0 +1,35 @@
+<div ng-controller="showProcessCtrl" ng-init="runCommands()">
+    <div ng-click="getResponse()" ng-show="processFlag">
+        <h4>Application deploying process</h4>
+        <ul ng-repeat="x in data">
+            <li>{{x}}</li>
+        </ul>
+    </div>
+
+    <div ng-show="serviceFlag">
+        <h4>Running Services</h4>
+        <!--<table class="table table-bordered table-striped">
+            <tr>
+                <th>PID</th>
+                <th>PPID</th>
+                <th>PGID</th>
+                <th>WINPID</th>
+                <th>TTY</th>
+                <th>UID</th>
+                <th>STIME</th>
+                <th>COMMAND</th>
+            </tr>
+            <tr ng-repeat="x in runningServices">
+                <td>{{x.PID}}</td>
+                <td>{{x.PPID}}</td>
+                <td>{{x.PGID}}</td>
+                <td>x.WINPID</td>
+                <td>{{x.TTY}}</td>
+                <td>{{x.UID}}</td>
+                <td>{{x.STIME}}</td>
+                <td>{{x.COMMAND}}</td>
+            </tr>
+        </table>-->
+        <pre>{{services}}</pre>
+    </div>
+</div>

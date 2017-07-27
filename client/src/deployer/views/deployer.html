@@ -37,6 +37,9 @@
         <div class="col-sm-2">
             <button class="btn btn-warning btn-block" ng-click="runCommands()">Execute Commands</button>
         </div>
+        <div class="col-sm-2">
+            <button type="button" data-toggle="modal" data-target="#saveModal" class="btn btn-success btn-block" ng-disabled="totalProcesses.length==0">Save</button>
+        </div>
 
     </div>
     <br/>
@@ -65,4 +68,46 @@
             </tr>
         </table>
     </div>
+
+    <!-- Modal -->
+  <div    class="modal" id="saveModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div style="background:  white" class="modal-content">
+    <div style="background:  white" class="modal-header">
+        <button type="button" class="close" style="color: red;font-size: 50px" data-dismiss="modal">&times;</button>
+       <h4 style="color: darkblue">Do You Want To Save The Changes.</h4>
+    </div>
+    <div  class="modal-body" >
+        
+        <div class="row">
+            <div class="col-lg-4">
+                <h5 style="color: darkblue">Process Title - </h5>
+            </div>
+            <div class="col-lg-4"><input type="text" class="form-control" ng-model="processTitle" placeholder='{{processData.title}}'   ></div>
+            <div class="col-lg-4">
+             
+           <!--     <div class="checkbox">
+                    <label style="color: darkblue"><input  type="checkbox" ng-model="isSuiteNameEdit" ng-checked="!editSuiteName" value="false" >Edit TestSuite Name</label>
+                </div>-->
+            </div>
+
+        </div>
+
+    </div>
+         <div style="background:  white" class="modal-footer">
+
+        <div class="row">
+            <div class="col-lg-2 col-lg-offset-5">
+                <input type="button" ng-click="saveProcessName()" data-dismiss="modal" class="btn btn-success btn-block" value="Save">
+            </div>
+        </div>
+        
+    </div>
+      </div>
+      
+    </div>
+  </div>
+  
 </div>
